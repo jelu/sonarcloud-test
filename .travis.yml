@@ -10,19 +10,12 @@ addons:
     - zlib1g-dev
     - libssl-dev
     - libcryptopant-dev
-language: c
-compiler:
-  - clang
-  - gcc
-install: ./autogen.sh
+addons:
+  sonarcloud:
+    organization: "jelu-github"
+    token:
+      secure: "2cmcLQ97nMhBVbby3FbIWme0pwW4ms/OJJJRvA7N3+IW/FD0U0YFKuCFBNyqYhSqD94mFMF0Wo92F3p2ud4DUbTs5NL2d3edok6rBa2H/nEiRYNWbEERZPNbJREB0X+lsr9eJuQuMOPRJzqWcx8aKvwbnPNHLC8BL6Z87fF+YIWjV6OhXn6nVaNcT42E8nMnjhn5f3HAMBurEwzncIIq/4QipEDmhdQVkD2rXW7x3UQ1//PKJ8m2CtJCZcUJXf1Z3DzqP1OitlnBYvom91/O5CEMBPrva0ZUIhs1Hz+yRoPfnWK+cK4NOieLDfFry+jp5VXpaQW5zy1vk5qMPxHgeAh1KnQ930h3nyXU6/7vP0LAyPrD+Q98oU8zRs9PQ0zDDtEiLxXi3XWMBbUho6db9RsX8YEp1JV80wAk5AEn95RD/+svwUI7x8NQc59+sdMhmDYdshPRy1EUfjs9JRfCJpmDS5O99DEpAKOiMzKdVGSQlpR2VBC/T2QC6GcsCd5VKkSN63OD0Oq8p5hDrWF6fB/oY8BPAH8N6gqd6ZU+ICqIB8mk34QkakQQFZvDNm2RTCs+Au29rAHFHTEXE7oyUOBmtGo6uoj6+FgnKqk8hoOzr0wDAIMLqEk4Uk9+ocBJvFJBQT7vyoRZxdyBHM8i03fANR9B+43mO7md2dI0ABk="
 script:
+  - ./autogen.sh
   - ./configure --enable-warn-all
-  - make dist
-  - tar zxvf *.tar.gz
-  - cd dnscap-[0-9]*
-  - mkdir build
-  - cd build
-  - ../configure --enable-warn-all
-  - make
-  - make test
-  - src/dnscap -h
+  - sonar-scanner
