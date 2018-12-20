@@ -10,7 +10,6 @@ addons:
     - zlib1g-dev
     - libssl-dev
     - libcryptopant-dev
-addons:
   sonarcloud:
     organization: "jelu-github"
     token:
